@@ -27,9 +27,10 @@ public class Comptebean {
     private Personne proprietaire;
     private String nomproprio;
     private String[] nomparticipants;
+    private String messagefinal = "Résultat : ";
+    private int prix;
 
     public Comptebean() {
-        participants = new ArrayList<>();
         personnes = new ArrayList<>();
         factures = new ArrayList<>();
     }
@@ -40,12 +41,13 @@ public class Comptebean {
     }
 
     public void ajouterFacture() {
+        participants = new ArrayList<>();
         for (Personne p : personnes) {
             if (p.getNom() == null ? getNomproprio() == null : p.getNom().equals(getNomproprio())) {
                 proprietaire = p;
             }
         }
-        for (int i = 0; i < personnes.size(); i++) {
+        for (int i = 0; i < nomparticipants.length; i++) {
             for (Personne pers : personnes) {
                 if (nomparticipants[i] == null ? pers.getNom() == null : nomparticipants[i].equals(pers.getNom())) {
                     participants.add(pers);
@@ -55,18 +57,49 @@ public class Comptebean {
 
         Facture f = new Facture(valeurfacture, nomfacture, proprietaire, participants);
         factures.add(f);
-        participants.clear();
         proprietaire = null;
     }
 
     public void entreAmis() {
         for (Facture fac : factures) {
             fac.getProprietaire().addValeur(fac.getPrix());
-            
+
             for (Personne parti : fac.getPersonnes()) {
                 parti.subbValeur(fac.getPrix() / participants.size());
             }
         }
+
+        for (Personne pers : personnes) {
+            if (pers.getValeur() > 0) {
+                for (Personne d : personnes) {
+                    if (d.getNom() == null ? pers.getNom() != null : !d.getNom().equals(pers.getNom())) {
+                        if (d.getValeur() < 0) {
+                            if (pers.getValeur() + d.getValeur() > 0) {
+                                prix = d.getValeur() * -1;
+                                pers.setValeur(pers.getValeur() + d.getValeur());
+                                d.setValeur(0);
+                                messagefinal.concat(d.getNom()+" doit "+prix+" à "+pers.getNom()+".");
+                            }
+                            if (pers.getValeur() + d.getValeur() < 0) {
+                                prix = pers.getValeur() * -1;
+                                d.setValeur(d.getValeur()+pers.getValeur());
+                                pers.setValeur(0);
+                                messagefinal.concat(d.getNom()+" doit "+prix+" à "+pers.getNom()+".");
+                            }
+                            if (pers.getValeur() + d.getValeur()== 0){
+                                prix = pers.getValeur();
+                                d.setValeur(0);
+                                pers.setValeur(0);
+                                messagefinal.concat(d.getNom()+" doit "+prix+" à "+pers.getNom()+".");
+                                
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 
     /**
@@ -197,6 +230,34 @@ public class Comptebean {
      */
     public void setNomparticipants(String[] nomparticipants) {
         this.nomparticipants = nomparticipants;
+    }
+
+    /**
+     * @return the messagefinal
+     */
+    public String getMessagefinal() {
+        return messagefinal;
+    }
+
+    /**
+     * @param messagefinal the messagefinal to set
+     */
+    public void setMessagefinal(String messagefinal) {
+        this.messagefinal = messagefinal;
+    }
+
+    /**
+     * @return the prix
+     */
+    public int getPrix() {
+        return prix;
+    }
+
+    /**
+     * @param prix the prix to set
+     */
+    public void setPrix(int prix) {
+        this.prix = prix;
     }
 
 }
