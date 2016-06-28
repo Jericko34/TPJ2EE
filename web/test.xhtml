@@ -6,16 +6,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Bon Comptes entre amis</title>
+        <title>Bons Comptes Entre Amis</title>
     </h:head>
-    <h:body>
-        <h:outputStylesheet library="style" name="boncompte.css" />
-        <div id="header">
-            <h1>Bon comptes entre amis</h1>
-        </div>
 
-        <div id="nav">
-            <h1>Ajouter une personne</h1>
+    <h:body>
+        <h1>Ajouter une personne</h1>
         <h:form>
             <h:outputText value="Nom de la personne"/>
             <h:inputText id="nompersonne" value="#{comptebean.nompersonne}"/>
@@ -30,47 +25,32 @@
                 </h:column>
             </h:dataTable>
         </h:form>
-        </div>
 
-        <div id="section">
-        
-            <h1>Ajouter une Facture</h1>
+        <h1>Ajouter une Facture</h1>
         <h:form>
-            <p><h:outputText value="Nom de la Facture : "/>
+            <h:outputText value="Nom de la Facture"/>
             <h:inputText id="nomfacture" value="#{comptebean.nomfacture}"/>
-            </p>
-            <p>
-            <h:outputText value="Prix : "/>
+            <h:outputText value="Prix"/>
             <h:inputText id="valeurfacture" value="#{comptebean.valeurfacture}"/>
-            </p>
-            <p><h:commandButton value="Valider" action="#{comptebean.ajouterFacture()}"/>
-            </p>
-            
-            <p><h:outputText value="Proprietaire : "/>
+            <h:commandButton value="Valider" action="#{comptebean.ajouterFacture()}"/>
+            <h:outputText value="Proprietaire"/>
             <h:selectOneRadio value="#{comptebean.nomproprio}">
                 <f:selectItems value="#{comptebean.personnes}" var="x" itemLabel="#{x.nom}" itemValue="#{x.nom}"/>
             </h:selectOneRadio>
-            </p>
-            
-            <p><h:outputText value="Participants : "/>
+            <h:outputText value="Participants"/>
             <h:selectManyCheckbox value="#{comptebean.nomparticipants}">
                 <f:selectItems var="m" value="#{comptebean.personnes}" itemLabel="#{m.nom}" itemValue="#{m.nom}"/>
             </h:selectManyCheckbox>
-            </p>
-            
-            <p><h1>Liste des factures</h1>
+            <h1>Liste des factures</h1>
+            <h:outputText value="#{comptebean.messagefinal}"/>
             <h:commandButton value="Calculer" action="#{comptebean.entreAmis()}"/>
             <h:dataTable var="f" value="#{comptebean.factures}">
                 <h:column>
                     <h:outputText value="#{f.description}"/>
                 </h:column>
             </h:dataTable>
-            </p>
         </h:form>
-        </div>
-        
     </h:body>
-        </div>
 
 </html>
 
