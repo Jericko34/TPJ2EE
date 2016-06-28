@@ -40,12 +40,8 @@ public class Comptebean {
         personnes.add(p);
     }
 
-    public void supprimerPersonne() {
-        for (Personne p : personnes) {
-            if (p.getNom() == null ? nompersonne == null : p.getNom().equals(nompersonne)) {
-                personnes.remove(p);
-            }
-        }
+    public void supprimerPersonne(Personne r) {
+        personnes.remove(r);
     }
 
     public void ajouterFacture() {
@@ -68,6 +64,9 @@ public class Comptebean {
         proprietaire = null;
     }
 
+    public void supprimerfacture(Facture r) {
+        factures.remove(r);
+    }
 
     public void entreAmis() {
         for (Facture fac : factures) {

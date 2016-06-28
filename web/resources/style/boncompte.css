@@ -13,14 +13,14 @@ h1{
 }
 
 #header {
-    background-color:black;
+    background-color:royalblue;
     color:white;
     text-align:center;
-    padding:5px;
+    padding:6px;
 }
 #nav {
-    line-height:30px;
-    background-color:#eeeeee;
+    line-height:20px;
+    background-color:#66ccff;
     height:400px;
     width:200px;
     float:left;
@@ -32,7 +32,7 @@ h1{
     padding:10px; 
 }
 #footer {
-    background-color:black;
+    background-color:royalblue;
     color:white;
     clear:both;
     text-align:center;
