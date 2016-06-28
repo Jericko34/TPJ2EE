@@ -40,6 +40,14 @@ public class Comptebean {
         personnes.add(p);
     }
 
+    public void supprimerPersonne() {
+        for (Personne p : personnes) {
+            if (p.getNom() == null ? nompersonne == null : p.getNom().equals(nompersonne)) {
+                personnes.remove(p);
+            }
+        }
+    }
+
     public void ajouterFacture() {
         participants = new ArrayList<>();
         for (Personne p : personnes) {
@@ -60,6 +68,7 @@ public class Comptebean {
         proprietaire = null;
     }
 
+
     public void entreAmis() {
         for (Facture fac : factures) {
             fac.getProprietaire().addValeur(fac.getPrix());
@@ -78,20 +87,20 @@ public class Comptebean {
                                 prix = d.getValeur() * -1;
                                 pers.setValeur(pers.getValeur() + d.getValeur());
                                 d.setValeur(0);
-                                messagefinal+=(d.getNom()+" doit "+prix+"euros à "+pers.getNom()+".");
+                                messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
                             }
                             if (pers.getValeur() + d.getValeur() < 0) {
                                 prix = pers.getValeur() * -1;
-                                d.setValeur(d.getValeur()+pers.getValeur());
+                                d.setValeur(d.getValeur() + pers.getValeur());
                                 pers.setValeur(0);
-                                messagefinal+=(d.getNom()+" doit "+prix+"euros à "+pers.getNom()+".");
+                                messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
                             }
-                            if (pers.getValeur() + d.getValeur()== 0){
+                            if (pers.getValeur() + d.getValeur() == 0) {
                                 prix = pers.getValeur();
                                 d.setValeur(0);
                                 pers.setValeur(0);
-                                messagefinal+=(d.getNom()+" doit "+prix+"euros à "+pers.getNom()+".");
-                                
+                                messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
+
                             }
                         }
                     }

@@ -16,64 +16,70 @@
 
         <div id="nav">
             <h1>Ajouter une personne</h1>
-        <h:form>
-            <h:outputText value="Nom de la personne"/>
-            <h:inputText id="nompersonne" value="#{comptebean.nompersonne}"/>
-            <h:commandButton value="Valider" action="#{comptebean.ajouterPersonne()}"/>
-            <h1>Liste de personne</h1>
-            <h:dataTable var="r" value="#{comptebean.personnes}">
-                <h:column>
-                    <h:outputText value="#{r.nom}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{r.valeur}"/>
-                </h:column>
-            </h:dataTable>
-        </h:form>
+            <h:form>
+                <h:outputText value="Nom de la personne"/>
+                <h:inputText id="nompersonne" value="#{comptebean.nompersonne}"/>
+                <h:commandButton value="Ajouter" action="#{comptebean.ajouterPersonne()}"/>
+                <h:commandButton value="Supprimer" action="#{comptebean.ajouterPersonne()}"/>
+                <h1>Liste de personne</h1>
+                <h:dataTable var="r" value="#{comptebean.personnes}">
+                    <h:column>
+                        <h:outputText value="#{r.nom}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </div>
 
         <div id="section">
-        
+
             <h1>Ajouter une Facture</h1>
-        <h:form>
-            <p><h:outputText value="Nom de la Facture : "/>
-            <h:inputText id="nomfacture" value="#{comptebean.nomfacture}"/>
-            </p>
-            <p>
-            <h:outputText value="Prix : "/>
-            <h:inputText id="valeurfacture" value="#{comptebean.valeurfacture}"/>
-            </p>
-            <p><h:commandButton value="Valider" action="#{comptebean.ajouterFacture()}"/>
-            </p>
-            
-            <p><h:outputText value="Proprietaire : "/>
-            <h:selectOneRadio value="#{comptebean.nomproprio}">
-                <f:selectItems value="#{comptebean.personnes}" var="x" itemLabel="#{x.nom}" itemValue="#{x.nom}"/>
-            </h:selectOneRadio>
-            </p>
-            
-            <p><h:outputText value="Participants : "/>
-            <h:selectManyCheckbox value="#{comptebean.nomparticipants}">
-                <f:selectItems var="m" value="#{comptebean.personnes}" itemLabel="#{m.nom}" itemValue="#{m.nom}"/>
-            </h:selectManyCheckbox>
-            </p>
-            
-            <p><h1>Liste des factures</h1>
-            <h:commandButton value="Calculer" action="#{comptebean.entreAmis()}"/>
-            <h:dataTable var="f" value="#{comptebean.factures}">
-                <h:column>
-                    <h:outputText value="#{f.description}"/>
-                </h:column>
-            </h:dataTable>
-            </p>
-        </h:form>
+            <h:form>
+                <p><h:outputText value="Nom de la Facture : "/>
+                    <h:inputText id="nomfacture" value="#{comptebean.nomfacture}"/>
+                </p>
+                <p>
+                    <h:outputText value="Prix : "/>
+                    <h:inputText id="valeurfacture" value="#{comptebean.valeurfacture}"/>
+                </p>
+                <p><h:commandButton value="Valider" action="#{comptebean.ajouterFacture()}"/>
+                </p>
+
+                <p><h:outputText value="Proprietaire : "/>
+                    <h:selectOneRadio value="#{comptebean.nomproprio}">
+                        <f:selectItems value="#{comptebean.personnes}" var="x" itemLabel="#{x.nom}" itemValue="#{x.nom}"/>
+                    </h:selectOneRadio>
+                </p>
+
+                <p><h:outputText value="Participants : "/>
+                    <h:selectManyCheckbox value="#{comptebean.nomparticipants}">
+                        <f:selectItems var="m" value="#{comptebean.personnes}" itemLabel="#{m.nom}" itemValue="#{m.nom}"/>
+                    </h:selectManyCheckbox>
+                </p>
+
+                <p><h1>Liste des factures</h1>
+                    <h:dataTable var="f" value="#{comptebean.factures}">
+                        <h:column>
+                            <h:outputText value="#{f.description}"/>
+                        </h:column>
+                    </h:dataTable>
+                </p>
+            </h:form>
         </div>
-        
+        <div id="Resultat final">
+
+            <h1>Resultat Final</h1>
+            <h:form>
+                <p><h:commandButton value="Calculer" action="#{comptebean.entreAmis()}"/></p>
+                <p><h:outputText value="#{comptebean.messagefinal}"/></p>
+            </h:form>
+
+        </div>
+
     </h:body>
 
-        <div id="footer">
-        Copyright : Darcel
-        </div>
+    <div id="footer">
+        Made by Benjamin
+    </div>
 
 </html>
 
