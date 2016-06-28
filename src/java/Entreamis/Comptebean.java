@@ -73,7 +73,7 @@ public class Comptebean {
             fac.getProprietaire().addValeur(fac.getPrix());
 
             for (Personne parti : fac.getPersonnes()) {
-                parti.subbValeur(fac.getPrix() / participants.size());
+                parti.subbValeur(fac.getPrix() / fac.getPersonnes().size());
             }
         }
 
@@ -89,17 +89,18 @@ public class Comptebean {
                                 messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
                             }
                             if (pers.getValeur() + d.getValeur() < 0) {
-                                prix = pers.getValeur() * -1;
+                                prix = pers.getValeur();
                                 d.setValeur(d.getValeur() + pers.getValeur());
                                 pers.setValeur(0);
                                 messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
                             }
                             if (pers.getValeur() + d.getValeur() == 0) {
-                                prix = pers.getValeur();
-                                d.setValeur(0);
-                                pers.setValeur(0);
-                                messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
-
+                                if (pers.getValeur() != 0) {
+                                    prix = pers.getValeur();
+                                    d.setValeur(0);
+                                    pers.setValeur(0);
+                                    messagefinal += (d.getNom() + " doit " + prix + "euros à " + pers.getNom() + ". ");
+                                }
                             }
                         }
                     }
