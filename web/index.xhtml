@@ -42,7 +42,7 @@
                 <f:selectItems var="m" value="#{comptebean.personnes}" itemLabel="#{m.nom}" itemValue="#{m.nom}"/>
             </h:selectManyCheckbox>
             <h1>Liste des factures</h1>
-            <h:outputText value="#{m}"
+            <h:outputText value="#{comptebean.messagefinal}"/>
             <h:commandButton value="Calculer" action="#{comptebean.entreAmis()}"/>
             <h:dataTable var="f" value="#{comptebean.factures}">
                 <h:column>
